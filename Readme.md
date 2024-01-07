@@ -52,3 +52,93 @@ Installer dans le fichier 'index.html', le lien pour utiliser les icons.
 <!-- Mettre le lien pour utiliser les Icons de bootstrap -->
 <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
 ```
+
+## Customiser bootstrap avec Sass
+
+Installer l'extension 'live Sass Compiler de Glenn Marks' sur VSCode.
+
+Créer un dossier nommé 'scss', puis à l'intérieur de ce dossier créer un fichier 'main.scss'.
+
+écrire ceci dans le fichier 'main.scss'
+
+```scss
+html {
+    color: red;
+}
+```
+
+Puis lancer 'Watch Sass' sur le bas de la fenêtre de VSCode.
+
+Rajouter un lien dans le fichier 'index.html'.
+
+```html
+<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+<!-- Ajout du lien pour le css, générer par Watch Sass -->
+<link rel="stylesheet" href="assets/css/main.css">
+```
+
+A l'intérieur du dossier 'scss', créer un fichier nommé '_custom.scss'.
+
+Puis écrire dans le fichier 'main.scss'.
+
+```scss
+// fichier main.scss
+@import 'custom';
+```
+
+Ici le fichier 'main.scss' appelle le fichier '_custom.scss'.
+
+Dans le fichier '_custom.scss', écrire ceci, venu du site bootstrap/Customize/Sass.
+
+```scss
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+```
+
+Ensuite suprimer les liens du fichier 'index.html'.
+
+```html
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+```
+
+Ajouter pour modifier les variables dans le fichier '_custom.scss'.
+
+```scss
+// Ajouter pour modifier la couleur des variables bootstrap.
+$primary: #906427;
+$secondary: #86AC97;
+$dark: #392C1E;
+$black: #292222;
+
+// Ajouter pour modifier la police des variables bootstrap.
+$font-family-sans-serif: "Montserrat", sans-serif !default;
+$font-family-serif: "Hind Madurai", serif !default;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+```
+
+Inclure le bootstrap-Icons dans le fichier 'main.scss'.
+
+```scss
+@import url("/node_modules/bootstrap-icons/font/bootstrap-icons.css");
+@import 'custom';
+```
+
+Ajout des liens vers google fonts dans le fichier 'index.html.
+
+```html
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <title>Document</title>
+```
