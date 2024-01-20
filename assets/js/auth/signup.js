@@ -17,9 +17,9 @@ inputValidationPassword.addEventListener("keyup", validateForm);
 function validateForm() {
     // Vérifier si le Nom est bien saisie et mettre dans une variable la valeur de 'return' de cette fonction, afin de récupérer la valeur booléenne.
     const nomOk = validateRequired(inputNom);
-    // Vérifier si le Prénom est bien saisie. Idem qu'au dessus.
+    // Vérifier si le Prénom est bien saisie. et mettre dans une variable la valeur de 'return' de cette fonction, afin de récupérer la valeur booléenne.
     const prenomOk = validateRequired(inputPreNom);
-    // Appeler la méthode 'validateMail', pour vérifier si le mail à le bon format.Idem qu'au dessus.
+    // Appeler la méthode 'validateMail', pour vérifier si le mail à le bon format et mettre dans une variable la valeur de 'return' de cette fonction, afin de récupérer la valeur booléenne.
     const mailOk = validateMail(inputMail);
 
     // Si tout les champs sont rempli, le bouton de validation est Ok.
@@ -42,13 +42,13 @@ function validateMail(input) {
         // Si c'est ok, ajouter une class 'is-valid' et supprimer la class 'is-invalid
         input.classList.add("is-valid");
         input.classList.remove("is-invalid");
-        return true;
+        return true;// retour de la valeur booléenne.
     }
     else{
         // C'est pas ok, supprimer la class 'is-valid' et ajouter la class 'is-invalid'
         input.classList.remove("is-valid");
         input.classList.add("is-invalid");
-        return false;
+        return false;// retour de la valeur booléenne.
     }
 }
 
@@ -57,12 +57,12 @@ function validateRequired(input) {
         // Si c'est ok, ajouter une class 'is-valid' et supprimer la class 'is-invalid
         input.classList.add("is-valid");
         input.classList.remove("is-invalid");
-        return true;
+        return true;// retour de la valeur booléenne.
     }
     else{
         // C'est pas ok, supprimer la class 'is-valid' et ajouter la class 'is-invalid'
         input.classList.remove("is-valid");
         input.classList.add("is-invalid");
-        return false;
+        return false;// retour de la valeur booléenne.
     }
 }
