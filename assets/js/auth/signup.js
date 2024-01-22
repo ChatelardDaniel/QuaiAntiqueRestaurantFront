@@ -21,9 +21,11 @@ function validateForm() {
     const prenomOk = validateRequired(inputPreNom);
     // Appeler la méthode 'validateMail', pour vérifier si le mail à le bon format et mettre dans une variable la valeur de 'return' de cette fonction, afin de récupérer la valeur booléenne.
     const mailOk = validateMail(inputMail);
+    // Appeler la méthode 'validatePassword', pour vérifier le mot de passe.
+    const passwordOk = validatePassword(inputPassword);
 
     // Si tout les champs sont rempli, le bouton de validation est Ok.
-    if(nomOk && prenomOk && mailOk) {
+    if(nomOk && prenomOk && mailOk && passwordOk) {
         btnValidation.disabled = false;
     }
     else{
@@ -31,6 +33,26 @@ function validateForm() {
     }
 }
 
+// Vérifier le mot de passe
+function validatePassword(input) {
+    // Définir mon regex
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+    // Récupérer le mail de l'utilisateur dans l'input.
+    const passwordUser = input.value;
+    // Vérifier que le regex est présent dans le mail de l'utilisateur.
+    if(passwordUser.match(passwordRegex)) {
+        // Si c'est ok, ajouter une class 'is-valid' et supprimer la class 'is-invalid
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid");
+        return true;// retour de la valeur booléenne.
+    }
+    else{
+        // C'est pas ok, supprimer la class 'is-valid' et ajouter la class 'is-invalid'
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+        return false;// retour de la valeur booléenne.
+    }
+}
 // Vérifier le format du Email
 function validateMail(input) {
     // Définir mon regex
@@ -66,3 +88,6 @@ function validateRequired(input) {
         return false;// retour de la valeur booléenne.
     }
 }
+
+// tester notre regex sur le site 'regex101.com'.
+/* /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$ */
