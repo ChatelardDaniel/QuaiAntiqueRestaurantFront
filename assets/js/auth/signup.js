@@ -24,12 +24,29 @@ function validateForm() {
     // Appeler la méthode 'validatePassword', pour vérifier le mot de passe.
     const passwordOk = validatePassword(inputPassword);
 
+    // Appeler la méthode 'passwordConfirmOk', pour vérifier que le mot de passe ai bien le même que celui de la connfirmation.
+    const passwordConfirmOk = validateConfirmationPassword(inputPassword, inputValidationPassword);
+
     // Si tout les champs sont rempli, le bouton de validation est Ok.
-    if(nomOk && prenomOk && mailOk && passwordOk) {
+    if(nomOk && prenomOk && mailOk && passwordOk && passwordConfirmOk) {
         btnValidation.disabled = false;
     }
     else{
         btnValidation.disabled = true;
+    }
+}
+
+// Méthode pour vérifier la confirmation du mot de passe.
+function validateConfirmationPassword(inputPwd, inputConfirmPwd){ 
+    if(inputPwd.value == inputConfirmPwd.value) {
+        inputConfirmPwd.classList.add("is-valid");
+        inputConfirmPwd.classList.remove("is-invalid");
+        return true;
+    }
+    else{
+        inputConfirmPwd.classList.add("is-invalid");
+        inputConfirmPwd.classList.remove("is-valid");
+        return false;
     }
 }
 
