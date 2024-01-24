@@ -11,6 +11,7 @@ function checkCredentials() {
 
         // il faudra récupérer le vrai token.
         const token = "dfghjklmxcvbnoiuytrezdfghj";
+        setToken(token);
 
         // placer ce token en cookie.
 
