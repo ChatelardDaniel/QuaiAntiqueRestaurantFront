@@ -13,7 +13,8 @@ function checkCredentials() {
         const token = "dfghjklmxcvbnoiuytrezdfghj";
         setToken(token);
 
-        // placer ce token en cookie.
+        // Créer le cookie 'RoleCookieName' 'admin' 7 jours.
+        setCookie(RoleCookieName, "client", 7);
 
         // rediriger vers la page d'accueil.
         window.location.replace("/");

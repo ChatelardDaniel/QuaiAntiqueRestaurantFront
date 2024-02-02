@@ -1,10 +1,18 @@
 const tokenCookieName = "accesstoken";
+const RoleCookieName = "role";
 const signoutBtn = document.getElementById("signout-btn");
 
 signoutBtn.addEventListener("click", signout);
 
+// Créer une méthode pour récupérer le 'role' de l'utilisation.
+function getRole(){
+    return getCookie(RoleCookieName);
+}
+
 function signout(){
     eraseCookie(tokenCookieName);
+    // supprimer le cookie 'role'.
+    eraseCookie(RoleCookieName);
     window.location.reload();
 }
 
@@ -45,4 +53,45 @@ function getCookie(name){
 // supprimer un cookie.
 function eraseCookie(name){
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+/*
+Définir 4 roles d'utilisateurs.
+disconnected
+connected (admin ou client)
+    - admin
+    - client
+ */
+
+function showAndHideElementsForRoles() {
+    const userConnected = isConnected();
+    const role = getRole();
+
+    let allElementsToEdit = document.querySelectorAll('[data-show]');
+
+    allElementsToEdit.forEach(element => {
+        // dataset, récupére tout les attributs, nommé ici 'show'.
+        switch (element.dataset.show) {
+            case 'disconnected':
+                if(userConnected){
+                    element.classList.add("d-none");
+                }
+                break;
+            case 'connected':
+                if(!userConnected){
+                    element.classList.add("d-none");
+                }
+                break;
+            case 'admin':
+                if(!userConnected || role !="admin"){
+                    element.classList.add("d-none");
+                }
+                break;
+            case 'client':
+                if(!userConnected || role !="client"){
+                    element.classList.add("d-none");
+                }
+                break;
+        }
+    });
 }

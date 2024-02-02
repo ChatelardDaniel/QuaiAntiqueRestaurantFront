@@ -35,11 +35,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/account">Mon compte</a>
                     </li>
-                    <li class="nav-item">
+                    <!--Visible pour les éléments "Déconnecté"-->
+                    <li class="nav-item" data-show="disconnected">
                         <a class="nav-link" href="/signin">Connexion</a>
                     </li>
                     </li>
-                    <li class="nav-item">
+                    <!--Visible pour les éléments "Connecté"-->
+                    <li class="nav-item" data-show="connected">
                         <button type="button" class="nav-link" id="signout-btn">Déconnexion</button>
                     </li>
                     </ul>
